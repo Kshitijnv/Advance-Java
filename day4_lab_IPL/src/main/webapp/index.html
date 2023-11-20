@@ -8,8 +8,14 @@
 	<table>
 		<form action="AddPlayerFormServlet">
 			<tr>
-				<td><label>Enter a team abbreviation</label></td>
-				<td><input type="text" name="abbreviation" /></td>
+				<td><label>Select a team abbreviation</label></td>
+				<td><!-- <input type="text" name="abbreviation" /> -->
+				<select name="abbreviation">
+				<option>CSK</option>
+				<option>GT</option>
+				<option>KKR</option>
+				</select>
+				</td>
 
 			</tr>
 			<tr>
@@ -28,12 +34,12 @@
 
 			<tr>
 				<td><label for="batAvg">Batting Average</label></td>
-				<td><input type="text" id="batAvg" name="batAvg" /></td>
+				<td><input type="number" id="batAvg" name="batAvg" /></td>
 			</tr>
 
 			<tr>
 				<td><label for="wicket">Wickets Taken</label></td>
-				<td><input type="text" id="wicket" name="wicket" /></td>
+				<td><input type="number" id="wicket" name="wicket" /></td>
 			</tr>
 
 			<tr>

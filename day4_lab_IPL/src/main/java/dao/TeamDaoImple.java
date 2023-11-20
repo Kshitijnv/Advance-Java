@@ -21,6 +21,7 @@ public class TeamDaoImple implements TeamDao {
 
 	@Override
 	public Team getTeamDetails(String abbrevation) throws SQLException {
+		//setting the IN parameter
 		pst1.setString(1, abbrevation);
 
 		try (ResultSet rst = pst1.executeQuery()) {
@@ -37,7 +38,7 @@ public class TeamDaoImple implements TeamDao {
 	public void cleanup() throws SQLException{
 		if(pst1!=null)
 			pst1.close();
-		System.out.println("PlayerDao Cleaned up");
+		System.out.println("Teamdao Cleaned up");
 	}
 
 }

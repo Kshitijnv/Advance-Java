@@ -111,7 +111,7 @@ public class PlayerServlet extends HttpServlet {
 				}
 				pw.print("Player Accepted!!!");
 
-				pdao.addPlayer(abbr, firstName, lastName, sqlDate, avg, wicket);
+				pdao.addPlayer(team, firstName, lastName, sqlDate, avg, wicket);
 			} else {
 				pw.print("<h4>No IPL team Found!!!!</h4>");
 			}

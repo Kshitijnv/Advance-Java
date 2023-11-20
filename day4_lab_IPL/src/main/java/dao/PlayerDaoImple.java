@@ -17,10 +17,11 @@ public class PlayerDaoImple implements PlayerDao {
 	public PlayerDaoImple() throws SQLException {
 		conn = getCn();
 		pst1 = conn.prepareStatement("insert into players values(default,?,?,?,?,?,?)");
+		System.out.println("player Dao Created");
 	}
 
 	@Override
-	public void addPlayer(String abbreviation, String firstName, String lastName, Date dob, double battingAverage,
+	public void addPlayer(Team team, String firstName, String lastName, Date dob, double battingAverage,
 			int wicketsTaken) throws SQLException {
 		System.out.println("in playerDAO imple");
 		pst1.setString(1, firstName);
@@ -28,12 +29,7 @@ public class PlayerDaoImple implements PlayerDao {
 		pst1.setDate(3, dob);
 		pst1.setDouble(4, battingAverage);
 		pst1.setInt(5, wicketsTaken);
-
-		TeamDaoImple tdao = new TeamDaoImple();
-		Team team = tdao.getTeamDetails(abbreviation);
-
-		int tid = team.getTeamId();
-		pst1.setInt(6, tid);
+		pst1.setInt(6, team.getTeamId());
 
 		pst1.executeUpdate();
 
