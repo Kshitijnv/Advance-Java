@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import org.hibernate.SessionFactory;
 
+import dao.DepartmentDao;
+import dao.DepartmentDaoImpl;
 import pojos.Department;
 import pojos.Employee;
 import pojos.EmployeeType;
@@ -21,13 +23,15 @@ public class AddDepartmentWithEmployees {
 		System.out.println("Enter number of employee to added ");
 		int count = sc.nextInt();
 		Employee emp[] = new Employee[count];
-		for (int i = 1; i <= count; i++) {
+		for (int i = 0; i < count; i++) {
 			System.out.println(
 					"enter employee details:firstName,lastName, email, joinDate, password, salary,EmployeeType type");
 			emp[i] = new Employee(sc.next(), sc.next(), sc.next(), LocalDate.parse(sc.next()), sc.next(),
 					sc.nextDouble(), EmployeeType.valueOf(sc.next().toUpperCase()));
 		}
-		
+		DepartmentDao dao = new DepartmentDaoImpl();
+		String msg = dao.addDepartmentWithEmp(dept,emp);
+		System.out.println(msg);
 		sc.close();
 		sf.close();
 	}

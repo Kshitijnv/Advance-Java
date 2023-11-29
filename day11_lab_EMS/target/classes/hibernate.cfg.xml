@@ -21,7 +21,8 @@
 		<!-- add mapping entry per entity -->
 		<mapping class="pojos.Employee" />
 		<mapping class="pojos.Department" />
-	<!-- 	<mapping class="pojos.Address"/>
-		<mapping class="pojos.Project"/> -->
+		<mapping class="pojos.Address" />
+	<!-- 	<mapping class="pojos.Project" /> -->
+
 	</session-factory>
 </hibernate-configuration>

@@ -1,6 +1,7 @@
 package dao;
 
 import pojos.Department;
+import pojos.Employee;
 
 public interface DepartmentDao {
 	// add a method to Insert a department
@@ -15,4 +16,6 @@ public interface DepartmentDao {
 	Department displayDepartmentDetailswithEmployee(String deptName);
 	//add a method to display dept and emps with join fetch
 	Department displayDepartmentDetailswithEmployeeWithJoin(String next);
+
+	String addDepartmentWithEmp(Department dept, Employee[] emp);
 }

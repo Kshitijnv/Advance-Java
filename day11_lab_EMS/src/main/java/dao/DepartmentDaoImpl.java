@@ -1,6 +1,8 @@
 package dao;
 
 import pojos.Department;
+import pojos.Employee;
+
 import static utils.HibernateUtils.getFactory;
 
 import org.hibernate.Session;
@@ -73,9 +75,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		String jpql = "select d from Department d where d.deptName =:dept";
 		Department result = null;
 		try {
-			result = session.createQuery(jpql, Department.class)
-					.setParameter("dept", deptName)
-					.getSingleResult();
+			result = session.createQuery(jpql, Department.class).setParameter("dept", deptName).getSingleResult();
 			result.getEmployees().size();
 			session.persist(result);
 			tx.commit();
@@ -94,9 +94,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		String jpql = "select d from Department d left join fetch d.employees where d.deptName =:dept ";
 		Department result = null;
 		try {
-			result = session.createQuery(jpql, Department.class)
-					.setParameter("dept", deptName)
-					.getSingleResult();
+			result = session.createQuery(jpql, Department.class).setParameter("dept", deptName).getSingleResult();
 			result.getEmployees().size();
 			session.persist(result);
 			tx.commit();
@@ -106,6 +104,26 @@ public class DepartmentDaoImpl implements DepartmentDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public String addDepartmentWithEmp(Department dept, Employee[] emp) {
+		String msg = "Department added failed!!!";
+		Session session = getFactory().getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			for (int i = 0; i < emp.length; i++) {
+				dept.addEmployee(emp[i]);
+			}
+			session.persist(dept);
+			tx.commit();
+			msg = "department added successfully!!";
+		} catch (RuntimeException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		}
+		return msg;
 	}
 
 }
