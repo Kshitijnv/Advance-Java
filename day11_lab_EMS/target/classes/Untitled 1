@@ -1,0 +1,19 @@
+DAO TEMPLATE
+
+Session session = getFactory().getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			tx.commit();
+		}catch(RuntimeException e) {
+			if(tx!=null)
+				tx.rollback();
+			e.printStackTrace();
+		}
+		
+Tester Template
+		SessionFactory sf = getFactory();
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println();
+		sc.close();
+		sf.close();
