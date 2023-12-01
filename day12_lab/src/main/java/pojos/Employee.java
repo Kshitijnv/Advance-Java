@@ -31,8 +31,8 @@ public class Employee extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name="dept_id")
 	private Department mydept;
-//	@ManyToMany
-//	private List<Project> myprojects;
+	@ManyToMany (targetEntity=Project.class)
+	private List<Project> myprojects;
 
 	public Employee() {
 		// TODO Auto-generated constructor stub

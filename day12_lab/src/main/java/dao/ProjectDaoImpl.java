@@ -26,11 +26,12 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public String assignEmplToProj(long empId, long projId) {
+	public Employee assignEmplToProj(long empId, long projId) {
 		Session session = getFactory().getCurrentSession();
 		Transaction tx = session.beginTransaction();
+		Employee employee = null;
 		try {
-			Employee employee = session.get(Employee.class, empId);
+			 employee = session.get(Employee.class, empId);
 			if(employee!=null) {
 				Project project = session.get(Project.class, projId);
 				if(project!=null)
@@ -42,7 +43,8 @@ public class ProjectDaoImpl implements ProjectDao {
 				tx.rollback();
 			e.printStackTrace();
 		}
-		return null;
+		return employee;
+		
 	}
 
 }

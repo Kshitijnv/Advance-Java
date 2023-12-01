@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 
 import dao.ProjectDao;
 import dao.ProjectDaoImpl;
+import pojos.Employee;
 public class AssignExistingEmpToProject {
 
 	public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class AssignExistingEmpToProject {
 		System.out.println("Enter the employee id & project id");
 		
 		ProjectDao projDao = new ProjectDaoImpl();
-		 String result = projDao.assignEmplToProj(sc.nextLong(),sc.nextLong());
+		 Employee result = projDao.assignEmplToProj(sc.nextLong(),sc.nextLong());
 		System.out.println(result);
 		sc.close();
 		sf.close();
