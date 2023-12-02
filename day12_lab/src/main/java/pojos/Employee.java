@@ -1,9 +1,11 @@
 package pojos;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,34 +13,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="emps")
-public class Employee extends BaseEntity{
-	@Column(name="first_name", length=30)
+@Table(name = "emps")
+public class Employee extends BaseEntity {
+	@Column(name = "first_name", length = 30)
 	private String firstName;
-	@Column(name="last_name", length=30)
+	@Column(name = "last_name", length = 30)
 	private String lastName;
-	@Column(length=30,unique = true)
+	@Column(length = 30, unique = true)
 	private String email;
-	@Column(name="join_date")
+	@Column(name = "join_date")
 	private LocalDate joinDate;
-	@Column(length=20,nullable = false)
+	@Column(length = 20, nullable = false)
 	private String password;
 	private Double salary;
 	@Enumerated(EnumType.STRING)
-	@Column(name="emp_type")
+	@Column(name = "emp_type")
 	private EmployeeType type;
 	@ManyToOne
-	@JoinColumn(name="dept_id")
+	@JoinColumn(name = "dept_id")
 	private Department mydept;
-	@ManyToMany (targetEntity=Project.class)
-	private List<Project> myprojects;
-
+	@ManyToMany(mappedBy = "employees")
+	private Set<Project> myprojects = new HashSet<>();
+	@Embedded
+	private AdhaarCard card;
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	public Employee(String firstName, String lastName, String email, LocalDate joinDate, String password, Double salary,
 			EmployeeType type) {
 		super();
@@ -121,14 +124,34 @@ public class Employee extends BaseEntity{
 				+ joinDate + ", salary=" + salary + ", type=" + type + ", mydept=" + mydept + "]";
 	}
 
+	public Set<Project> getMyprojects() {
+		return myprojects;
+	}
 
-//	public List<Project> getMyprojects() {
-//		return myprojects;
-//	}
-//
-//
-//	public void setMyprojects(List<Project> myprojects) {
-//		this.myprojects = myprojects;
-//	}
-	
+	public void setMyprojects(Set<Project> myprojects) {
+		this.myprojects = myprojects;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Employee))
+			return false;
+		Employee other = (Employee) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		return true;
+	}
 }

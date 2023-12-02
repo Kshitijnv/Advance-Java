@@ -4,8 +4,11 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -19,7 +22,12 @@ public class Project extends BaseEntity {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 	// additional property for Project *---->* Emp
-	@ManyToMany(targetEntity=Employee.class)
+	// suppose : Project : owning side , so to customize name of the child table +
+	// FK col names
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "projects_emps"
+			, joinColumns = @JoinColumn(name = "project_id")
+	, inverseJoinColumns = @JoinColumn(name = "emp_id"))
 	private Set<Employee> employees = new HashSet<>();
 
 	public Project() {
@@ -70,13 +78,41 @@ public class Project extends BaseEntity {
 		return "Project [title=" + title + ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
 
+	// add helper method to set bi dir asso Project ---> Emp
 	public void addEmployee(Employee e) {
-		employees.add(e);
-
+		this.employees.add(e);
+		e.getMyprojects().add(this);
 	}
 
+	// add helper method to un set bi dir asso Project ---> Emp
 	public void removeEmployee(Employee e) {
-		employees.remove(e);
-
+		this.employees.remove(e);
+		e.getMyprojects().remove(this);
 	}
+	//for the correct n efficient working of HashSet , override hashCode n equals
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Project))
+			return false;
+		Project other = (Project) obj;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+	
+
 }
