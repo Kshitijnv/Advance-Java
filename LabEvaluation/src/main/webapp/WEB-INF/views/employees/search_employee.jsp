@@ -7,17 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="course" method="post">
+	<form action="company" method="post">
 		<table>
 			<tr>
-				<td><select name="myCourse">
-						<option>DAC</option>
-						<option>DESD</option>
-						<option>DITIS</option>
+				<td><select name="myCompany">
+						<option>CDAC</option>
+						<option>HCL</option>
+						<option>TCS</option>
 				</select></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Add A Student" /></td>
+				<td><input type="submit" value="Show the Employees" /></td>
 			</tr>
 		</table>
 	</form>

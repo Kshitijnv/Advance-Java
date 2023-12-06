@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.app</groupId>
-	<artifactId>LabAssignment</artifactId>
+	<artifactId>B1_batch</artifactId>
 	<version>0.0.1</version>
-	<name>LabAssignment</name>
+	<name>B1_batch</name>
 	<description>Spring Boot Template Project for monolithic web app , with JSP based view layer</description>
 	<properties>
 		<java.version>11</java.version>

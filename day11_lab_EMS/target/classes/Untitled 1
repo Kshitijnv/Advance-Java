@@ -1,6 +1,6 @@
 DAO TEMPLATE
 
-Session session = getFactory().getCurrentSession();
+		Session session = getFactory().getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		try {
 			tx.commit();

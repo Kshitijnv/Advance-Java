@@ -12,14 +12,14 @@
 
 	<table border="1">
 		<tr>
-			<th>Rollno</th>
+			<th>Employee No</th>
 			<th>Name</th>
 		</tr>
 
-		<c:forEach var="student" items="${requestScope.filterStudent}">
+		<c:forEach var="employee" items="${requestScope.filterEmployee}">
 			<tr>
-				<td>${student.rollNo}</td>
-				<td>${student.firstName} ${student.lastName}</td>
+				<td>${employee.empNo}</td>
+				<td>${employee.firstName} ${employee.lastName}</td>
 			</tr>
 		</c:forEach>
 

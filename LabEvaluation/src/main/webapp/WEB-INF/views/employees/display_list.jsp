@@ -10,24 +10,24 @@
 </head>
 <body>
 
-	<h2>Student List</h2>
+	<h2>employee List</h2>
 
 <table border="1">
     <tr>
-        <th>Roll Number</th>
+        <th>Employee Number</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Course</th>
+        <th>Company</th>
         <th>City</th>
     </tr>
 
-    <c:forEach var="student" items="${requestScope.listOfStu}">
+    <c:forEach var="employee" items="${requestScope.listOfEmp}">
         <tr>
-            <td>${student.rollNo}</td>
-            <td>${student.firstName}</td>
-            <td>${student.lastName}</td>
-            <td>${student.courseName}</td>
-            <td>${student.city}</td>
+            <td>${employee.empNo}</td>
+            <td>${employee.firstName}</td>
+            <td>${employee.lastName}</td>
+            <td>${employee.companyName}</td>
+            <td>${employee.city}</td>
         </tr>
     </c:forEach>
 </table>

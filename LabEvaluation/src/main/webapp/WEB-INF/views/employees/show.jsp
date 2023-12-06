@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="students/addStudent"> Add Student Details</a>
-<a href="students/display">View Student details</a>
-<a href= "students/find">View Student by Course</a>
+	<h4>${requestScope.employee}</h4>
+	<spring:url var ="url" value="/"></spring:url>
+	<a href="${url}">go to home page</a>
 </body>
 </html>
