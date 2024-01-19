@@ -19,6 +19,7 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
+    //appointments/ongoing
     @PostMapping("/ongoing")
     public ResponseEntity<?> createAppointments(@RequestBody List<Appointment> appointments) {
         List<Appointment> createdAppointments = new ArrayList<>();
