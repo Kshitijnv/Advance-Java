@@ -22,7 +22,7 @@ public class JobPostingController {
 
     @Autowired
     private JobPostingService jobPostingService;
-
+/*   localhost:7070/jobPostings  */
     @PostMapping
     public ResponseEntity<Object> postJob(@RequestBody JobPosting jobPosting) {
         try {
@@ -32,7 +32,7 @@ public class JobPostingController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to post job");
         }
     }
-
+    /*   localhost:7070/jobPostings/1  */
     @PutMapping("/{jobId}")
     public ResponseEntity<Object> updateJob(@PathVariable long jobId, @RequestBody JobPosting updatedJobPosting) {
         try {
@@ -46,7 +46,7 @@ public class JobPostingController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update job");
         }
     }
-
+    /*   localhost:7070/jobPostings/1  */
     @DeleteMapping("/{jobId}")
     public ResponseEntity<Object> deleteJob(@PathVariable long jobId) {
         try {
@@ -56,7 +56,7 @@ public class JobPostingController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete job");
         }
     }
-
+    /*   localhost:7070/jobPostings  */
     @GetMapping
     public ResponseEntity<Object> getAllJobPostings() {
         try {
